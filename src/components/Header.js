@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 const HeaderWrapper = styled.header`
   position: fixed;
+  width: 100vw;
   height: 4rem;
   display: flex;
   justify-content: space-between;
