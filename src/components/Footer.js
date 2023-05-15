@@ -9,10 +9,10 @@ const FooterWrapper = styled.footer`
   align-items: center;
   width: 100vw;
   padding: 1rem 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid var(--light-shadow);
 
   * {
-    color: gray;
+    color: var(--gray);
   }
 
   & span {

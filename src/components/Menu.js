@@ -7,7 +7,7 @@ const MenuWrapper = styled.div`
   right: 0;
   width: 12rem;
   border-radius: 0.5rem;
-  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 5px 1px var(--light-shadow);
 `;
 
 const MenuItem = styled(Link)`
@@ -15,7 +15,7 @@ const MenuItem = styled(Link)`
   cursor: pointer;
   height: 3rem;
   line-height: 3rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid var(--light-shadow);
   text-align: left;
   font-size: 1rem;
 
@@ -26,7 +26,7 @@ const MenuItem = styled(Link)`
   }
 
   &:hover {
-    background-color: aliceblue;
+    background-color: var(--hover);
   }
 
   &:first-of-type {

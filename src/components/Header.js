@@ -11,6 +11,7 @@ const HeaderWrapper = styled.header`
   justify-content: space-between;
   align-items: center;
   padding: 0 2rem;
+  box-shadow: 0 0 10px 5px var(--light-shadow);
 `;
 
 const Title = styled.div`
