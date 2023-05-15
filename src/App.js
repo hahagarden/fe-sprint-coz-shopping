@@ -3,10 +3,12 @@ import "./App.css";
 import MainPage from "./pages/MainPage";
 import ProductPage from "./pages/ProductPage";
 import BookmarkPage from "./pages/BookmarkPage";
+import Header from "./components/Header";
 
 function App() {
   return (
     <>
+      <Header />
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/products/list" element={<ProductPage />} />
