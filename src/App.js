@@ -4,6 +4,7 @@ import MainPage from "./pages/MainPage";
 import ProductPage from "./pages/ProductPage";
 import BookmarkPage from "./pages/BookmarkPage";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/products/list" element={<ProductPage />} />
         <Route path="/bookmark" element={<BookmarkPage />} />
       </Routes>
+      <Footer />
     </>
   );
 }
