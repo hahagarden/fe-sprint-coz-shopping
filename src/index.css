@@ -2,8 +2,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  color: black;
-  background-color: white;
+  color: var(--default-text);
+  background-color: var(--default-background);
 }
 
 a {
@@ -20,4 +20,12 @@ body {
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+:root {
+  --default-background: white;
+  --default-text: black;
+  --light-shadow: rgba(0, 0, 0, 0.1);
+  --gray: gray;
+  --hover: aliceblue;
 }
