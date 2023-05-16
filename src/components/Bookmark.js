@@ -3,22 +3,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { add, remove } from "../redux/bookmarkListSlice";
 
 const BookmarkWrapper = styled.div`
-  position: absolute;
-
-  & i {
-    color: ${(props) => (props.isBookmarked ? "var(--yellow)" : "var(--gray)")};
-    opacity: 0.7;
+  & > i {
+    color: ${(props) => (props.isBookmarked ? "var(--yellow)" : "var(--light-gray)")};
     text-shadow: 1px 1px var(--light-shadow);
+    font-size: 1.5rem;
   }
 `;
 
-function Bookmark({ product }) {
+function Bookmark({ product, className }) {
+  // className for emotion
   const dispatch = useDispatch();
 
   const bookmarkList = useSelector((state) => state.bookmarkList);
   const isBookmarked = bookmarkList.find((el) => el.id === product.id) ? true : false;
 
-  const handleBookmarkClick = () => {
+  const handleBookmarkClick = (event) => {
+    event.stopPropagation();
     if (isBookmarked) {
       dispatch(remove(product.id));
     } else {
@@ -27,7 +27,7 @@ function Bookmark({ product }) {
   };
 
   return (
-    <BookmarkWrapper isBookmarked={isBookmarked} onClick={handleBookmarkClick}>
+    <BookmarkWrapper isBookmarked={isBookmarked} onClick={handleBookmarkClick} className={className}>
       <i className="fa-solid fa-star"></i>
     </BookmarkWrapper>
   );

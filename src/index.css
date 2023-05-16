@@ -3,7 +3,6 @@
   padding: 0;
   box-sizing: border-box;
   color: var(--default-text);
-  background-color: var(--default-background);
 }
 
 a {
@@ -26,7 +25,10 @@ code {
   --default-background: white;
   --default-text: black;
   --light-shadow: rgba(0, 0, 0, 0.1);
+  --light-gray: rgb(196, 194, 194);
   --gray: gray;
   --yellow: #fdb500;
+  --purple: #452cdd;
+  --white: white;
   --hover: aliceblue;
 }
