@@ -27,5 +27,6 @@ code {
   --default-text: black;
   --light-shadow: rgba(0, 0, 0, 0.1);
   --gray: gray;
+  --yellow: #fdb500;
   --hover: aliceblue;
 }
