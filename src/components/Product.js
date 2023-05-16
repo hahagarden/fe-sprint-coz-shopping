@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
 import ProductModal from "./ProductModal";
+import Bookmark from "./Bookmark";
 
 const ProductWrapper = styled.div`
   position: absolute;
@@ -8,10 +9,16 @@ const ProductWrapper = styled.div`
   height: 20rem;
 `;
 
-const Image = styled.img`
+const Image = styled.div`
+  position: relative;
   width: 100%;
   height: 75%;
-  border-radius: 1rem;
+
+  & img {
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+  }
 `;
 
 const Text = styled.div`
@@ -91,7 +98,11 @@ function Product({ product }) {
   return (
     <>
       <ProductWrapper onClick={handleProductClick}>
-        <Image src={product.type === "Brand" ? `${product.brand_image_url}` : `${product.image_url}`} />
+        <Image>
+          <img src={product.type === "Brand" ? `${product.brand_image_url}` : `${product.image_url}`} />{" "}
+          <Bookmark product={product} />
+        </Image>
+
         <Text>
           <Title>{product.type === "Brand" ? product.brand_name : product.title}</Title>
           {switchTextUI(product.type)}
