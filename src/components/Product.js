@@ -65,6 +65,12 @@ const Follower = styled.div`
   right: 0;
 `;
 
+const ProductBookmark = styled(Bookmark)`
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+`;
+
 function Product({ product }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -100,9 +106,8 @@ function Product({ product }) {
       <ProductWrapper onClick={handleProductClick}>
         <Image>
           <img src={product.type === "Brand" ? `${product.brand_image_url}` : `${product.image_url}`} />{" "}
-          <Bookmark product={product} />
+          <ProductBookmark product={product} />
         </Image>
-
         <Text>
           <Title>{product.type === "Brand" ? product.brand_name : product.title}</Title>
           {switchTextUI(product.type)}
