@@ -5,6 +5,7 @@ const MenuWrapper = styled.div`
   position: absolute;
   top: 2.5rem;
   right: 0;
+  background-color: var(--white);
   width: 12rem;
   border-radius: 0.5rem;
   box-shadow: 0px 0px 5px 1px var(--light-shadow);

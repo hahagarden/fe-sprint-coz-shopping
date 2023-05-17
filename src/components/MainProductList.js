@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import Product from "./Product";
 
 const MainProductListWrapper = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
 `;
@@ -11,9 +12,10 @@ const Title = styled.h2`
 `;
 
 const List = styled.div`
+  height: 16rem;
   display: flex;
 
-  & > div:not(:first-child) {
+  & > div:not(:first-of-type) {
     margin-left: 1rem;
   }
 `;
@@ -26,7 +28,7 @@ function MainProductList({ products, type }) {
       </Title>
       <List>
         {products.map((product) => (
-          <Product product={product} />
+          <Product product={product} key={product.id} />
         ))}
       </List>
     </MainProductListWrapper>

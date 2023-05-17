@@ -3,9 +3,11 @@ import { useState } from "react";
 import ProductModal from "./ProductModal";
 import Bookmark from "./Bookmark";
 
-const ProductWrapper = styled.div`
-  width: 20rem;
-  height: 20rem;
+const ProductWrapper = styled.div``;
+
+const ProductContainer = styled.div`
+  width: 16rem;
+  height: 16rem;
   flex: none;
 `;
 
@@ -27,7 +29,7 @@ const Text = styled.div`
   height: 20%;
 
   * {
-    font-size: 1.3rem;
+    font-size: 1rem;
   }
 `;
 
@@ -102,8 +104,8 @@ function Product({ product }) {
   };
 
   return (
-    <>
-      <ProductWrapper onClick={handleProductClick}>
+    <ProductWrapper>
+      <ProductContainer onClick={handleProductClick}>
         <Image>
           <img src={product.type === "Brand" ? `${product.brand_image_url}` : `${product.image_url}`} />{" "}
           <ProductBookmark product={product} />
@@ -112,9 +114,9 @@ function Product({ product }) {
           <Title>{product.type === "Brand" ? product.brand_name : product.title}</Title>
           {switchTextUI(product.type)}
         </Text>
-      </ProductWrapper>
+      </ProductContainer>
       {isModalOpen && <ProductModal product={product} setIsModalOpen={setIsModalOpen} />}
-    </>
+    </ProductWrapper>
   );
 }
 

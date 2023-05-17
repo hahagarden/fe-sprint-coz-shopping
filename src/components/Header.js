@@ -5,6 +5,9 @@ import { Link } from "react-router-dom";
 
 const HeaderWrapper = styled.header`
   position: fixed;
+  top: 0;
+  z-index: 1;
+  background-color: var(--white);
   width: 100vw;
   height: 4rem;
   display: flex;
@@ -32,6 +35,7 @@ const MenuButton = styled.button`
   position: relative;
   padding: 0 1rem;
   border: none;
+  background-color: transparent;
 
   & > i {
     font-size: 2rem;
