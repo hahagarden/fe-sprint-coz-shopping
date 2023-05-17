@@ -1,9 +1,10 @@
-import { configureStore } from "@reduxjs/toolkit";
-import bookmarkListSlice from "./bookmarkListSlice";
-import productListSlice from "./productListSlice";
+import { configureStore } from '@reduxjs/toolkit';
+import persistedReducer from './index';
+import persistStore from 'redux-persist/es/persistStore';
 
 const store = configureStore({
-  reducer: { bookmarkList: bookmarkListSlice.reducer, productList: productListSlice.reducer },
+  reducer: persistedReducer,
 });
 
+export const persistor = persistStore(store);
 export default store;
