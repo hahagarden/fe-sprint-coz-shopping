@@ -4,9 +4,9 @@ import ProductModal from "./ProductModal";
 import Bookmark from "./Bookmark";
 
 const ProductWrapper = styled.div`
-  position: absolute;
   width: 20rem;
   height: 20rem;
+  flex: none;
 `;
 
 const Image = styled.div`
