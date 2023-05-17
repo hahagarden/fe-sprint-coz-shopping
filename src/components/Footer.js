@@ -3,12 +3,14 @@ import styled from "@emotion/styled";
 const FooterWrapper = styled.footer`
   position: absolute;
   bottom: 0;
+  z-index: 1;
+  background-color: var(--white);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100vw;
-  padding: 1rem 0;
+  height: 4rem;
   border-top: 1px solid var(--light-shadow);
 
   * {
