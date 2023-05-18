@@ -12,6 +12,7 @@ const ModalBackground = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 `;
 
 const ModalBox = styled.div`
@@ -21,6 +22,7 @@ const ModalBox = styled.div`
   border-radius: 2rem;
   background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), url(${(props) => props.bgImage});
   background-size: cover;
+  cursor: auto;
 
   & img {
     width: 100%;

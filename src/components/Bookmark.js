@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { add, remove } from "../redux/bookmarkListSlice";
 
 const BookmarkWrapper = styled.div`
+  cursor: pointer;
+
   & > i {
     color: ${(props) => (props.isBookmarked ? "var(--yellow)" : "var(--light-gray)")};
     text-shadow: 1px 1px var(--light-shadow);

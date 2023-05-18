@@ -9,6 +9,7 @@ const ProductContainer = styled.div`
   width: 16rem;
   height: 16rem;
   flex: none;
+  cursor: pointer;
 `;
 
 const Image = styled.div`
@@ -82,7 +83,7 @@ function Product({ product }) {
         return (
           <>
             <Discount>{product.discountPercentage}%</Discount>
-            <Price>{product.price.toLocaleString()}원</Price>
+            <Price>{Number(product.price).toLocaleString()}원</Price>
           </>
         );
       case "Category":
