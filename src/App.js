@@ -5,13 +5,15 @@ import ProductPage from "./pages/ProductPage";
 import BookmarkPage from "./pages/BookmarkPage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { set } from "./redux/productListSlice";
 import { useEffect } from "react";
 import { init } from "./redux/bookmarkListSlice";
+import ProductModal from "./components/ProductModal";
 
 function App() {
   const dispatch = useDispatch();
+  const modalData = useSelector((state) => state.modalData);
 
   useEffect(() => {
     fetch("http://cozshopping.codestates-seb.link/api/v1/products")
@@ -32,6 +34,7 @@ function App() {
         <Route path="/products/list" element={<ProductPage />} />
         <Route path="/bookmark" element={<BookmarkPage />} />
       </Routes>
+      {modalData && <ProductModal product={modalData} />}
       <Footer />
     </>
   );

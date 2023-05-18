@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
 import Bookmark from "./Bookmark";
+import { useDispatch } from "react-redux";
+import { remove } from "../redux/modalDataSlice";
 
 const ModalBackground = styled.div`
   position: fixed;
@@ -51,9 +53,11 @@ const Title = styled.div`
   color: var(--white);
 `;
 
-function ProductModal({ product, setIsModalOpen }) {
+function ProductModal({ product }) {
+  const dispatch = useDispatch();
+
   const handleModalClick = () => {
-    setIsModalOpen(false);
+    dispatch(remove());
   };
 
   return (

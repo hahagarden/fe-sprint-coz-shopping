@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
-import { useState } from "react";
-import ProductModal from "./ProductModal";
 import Bookmark from "./Bookmark";
+import { useDispatch } from "react-redux";
+import { add } from "../redux/modalDataSlice";
 
 const ProductWrapper = styled.div``;
 
@@ -75,7 +75,7 @@ const ProductBookmark = styled(Bookmark)`
 `;
 
 function Product({ product }) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const dispatch = useDispatch();
 
   const switchTextUI = (type) => {
     switch (type) {
@@ -100,13 +100,13 @@ function Product({ product }) {
     }
   };
 
-  const handleProductClick = () => {
-    setIsModalOpen(true);
+  const handleProductClick = (modalData) => {
+    dispatch(add(modalData));
   };
 
   return (
     <ProductWrapper>
-      <ProductContainer onClick={handleProductClick}>
+      <ProductContainer onClick={() => handleProductClick(product)}>
         <Image>
           <img src={product.type === "Brand" ? `${product.brand_image_url}` : `${product.image_url}`} />{" "}
           <ProductBookmark product={product} />
@@ -116,7 +116,6 @@ function Product({ product }) {
           {switchTextUI(product.type)}
         </Text>
       </ProductContainer>
-      {isModalOpen && <ProductModal product={product} setIsModalOpen={setIsModalOpen} />}
     </ProductWrapper>
   );
 }
