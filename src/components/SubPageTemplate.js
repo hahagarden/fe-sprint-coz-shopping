@@ -6,12 +6,13 @@ import ProductList from "./ProductList";
 const SubPageWrapper = styled.div`
   width: 100vw;
   padding: 0 100px;
+  padding-bottom: 30px;
   height: 100%;
+  min-height: calc(100vh - 8rem);
   margin: 0 auto;
   margin-top: 4rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 `;
 
