@@ -19,12 +19,25 @@ const FilterListWrapper = styled.div`
   }
 `;
 
+const ClickedFilter = styled(Filter)`
+  & > div {
+    font-weight: 600;
+    color: var(--purple);
+  }
+`;
+
 function FilterList({ handleFilterClick }) {
+  const currentFilter = localStorage.getItem("filterOption");
+
   return (
     <FilterListWrapper>
-      {Object.values(filterOptions).map((option) => (
-        <Filter key={option.type} filterOption={option} handleFilterClick={handleFilterClick} />
-      ))}
+      {Object.values(filterOptions).map((option) => {
+        return currentFilter === option.type ? (
+          <ClickedFilter key={option.type} filterOption={option} handleFilterClick={handleFilterClick} />
+        ) : (
+          <Filter key={option.type} filterOption={option} handleFilterClick={handleFilterClick} />
+        );
+      })}
     </FilterListWrapper>
   );
 }
