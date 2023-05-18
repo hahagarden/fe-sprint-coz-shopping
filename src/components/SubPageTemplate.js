@@ -45,15 +45,17 @@ function SubPageTemplate({ baseList }) {
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
-
+    if (!localStorage.getItem("filterOption")) localStorage.setItem("filterOption", "All");
     return () => {
       window.removeEventListener("scroll", handleScroll);
       localStorage.setItem("currentIndex", ITEMS_PER_ROW * ROWS_PER_SCROLL);
+      localStorage.setItem("filterOption", "All");
     };
   }, []);
 
   useEffect(() => {
-    setFilteredList(baseList);
+    if (localStorage.getItem("filterOption") === "All") setFilteredList(baseList);
+    else setFilteredList(baseList.filter((product) => product.type === localStorage.getItem("filterOption")));
   }, [baseList]);
 
   useEffect(() => {
@@ -69,6 +71,7 @@ function SubPageTemplate({ baseList }) {
   const handleFilterClick = (type) => {
     if (type === "All") setFilteredList(baseList);
     else setFilteredList(baseList.filter((product) => product.type === type));
+    localStorage.setItem("filterOption", type);
   };
 
   return (

@@ -13,9 +13,10 @@ const bookmarkListSlice = createSlice({
         1
       );
     },
+    init: (state, action) => action.payload,
   },
 });
 
-export const { add, remove } = bookmarkListSlice.actions;
+export const { add, remove, init } = bookmarkListSlice.actions;
 
 export default bookmarkListSlice;

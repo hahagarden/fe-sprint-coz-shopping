@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
 import Bookmark from "./Bookmark";
+import { useDispatch } from "react-redux";
+import { remove } from "../redux/modalDataSlice";
 
 const ModalBackground = styled.div`
   position: fixed;
@@ -12,6 +14,7 @@ const ModalBackground = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 `;
 
 const ModalBox = styled.div`
@@ -21,6 +24,7 @@ const ModalBox = styled.div`
   border-radius: 2rem;
   background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), url(${(props) => props.bgImage});
   background-size: cover;
+  cursor: auto;
 
   & img {
     width: 100%;
@@ -49,9 +53,11 @@ const Title = styled.div`
   color: var(--white);
 `;
 
-function ProductModal({ product, setIsModalOpen }) {
+function ProductModal({ product }) {
+  const dispatch = useDispatch();
+
   const handleModalClick = () => {
-    setIsModalOpen(false);
+    dispatch(remove());
   };
 
   return (

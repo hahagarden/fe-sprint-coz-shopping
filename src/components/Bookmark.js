@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { add, remove } from "../redux/bookmarkListSlice";
 
 const BookmarkWrapper = styled.div`
+  cursor: pointer;
+
   & > i {
     color: ${(props) => (props.isBookmarked ? "var(--yellow)" : "var(--light-gray)")};
     text-shadow: 1px 1px var(--light-shadow);
@@ -21,8 +23,16 @@ function Bookmark({ product, className }) {
     event.stopPropagation();
     if (isBookmarked) {
       dispatch(remove(product.id));
+
+      const newBookmarkList = bookmarkList.slice();
+      newBookmarkList.splice(
+        newBookmarkList.findIndex((el) => el.id === product.id),
+        1
+      );
+      localStorage.setItem("bookmarks", JSON.stringify(newBookmarkList));
     } else {
       dispatch(add(product));
+      localStorage.setItem("bookmarks", JSON.stringify([...bookmarkList, product]));
     }
   };
 
