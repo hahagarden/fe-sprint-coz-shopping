@@ -17,10 +17,9 @@ const SubPageWrapper = styled.div`
 `;
 
 function SubPageTemplate({ baseList }) {
-  const ITEMS_PER_ROW = 4;
-  const ROWS_PER_SCROLL = 3;
+  const DATA_PER_PAGE = 30;
 
-  if (!localStorage.getItem("currentIndex")) localStorage.setItem("currentIndex", ITEMS_PER_ROW * ROWS_PER_SCROLL);
+  if (!localStorage.getItem("currentIndex")) localStorage.setItem("currentIndex", DATA_PER_PAGE);
   let currentIndex = Number(localStorage.getItem("currentIndex"));
 
   const [filteredList, setFilteredList] = useState([]);
@@ -39,8 +38,8 @@ function SubPageTemplate({ baseList }) {
 
   const addNextData = () => {
     if (isEnd) {
-      setCurrentList([...currentList, ...filteredList.slice(currentIndex, currentIndex + ITEMS_PER_ROW * ROWS_PER_SCROLL)]);
-      localStorage.setItem("currentIndex", currentIndex + ITEMS_PER_ROW * ROWS_PER_SCROLL);
+      setCurrentList([...currentList, ...filteredList.slice(currentIndex, currentIndex + DATA_PER_PAGE)]);
+      localStorage.setItem("currentIndex", currentIndex + DATA_PER_PAGE);
       setIsEnd(false);
     }
   };
@@ -50,7 +49,7 @@ function SubPageTemplate({ baseList }) {
     if (!localStorage.getItem("filterOption")) localStorage.setItem("filterOption", "All");
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      localStorage.setItem("currentIndex", ITEMS_PER_ROW * ROWS_PER_SCROLL);
+      localStorage.setItem("currentIndex", DATA_PER_PAGE);
       localStorage.setItem("filterOption", "All");
     };
   }, []);
@@ -61,7 +60,7 @@ function SubPageTemplate({ baseList }) {
   }, [baseList]);
 
   useEffect(() => {
-    localStorage.setItem("currentIndex", ITEMS_PER_ROW * ROWS_PER_SCROLL);
+    localStorage.setItem("currentIndex", DATA_PER_PAGE);
     currentIndex = Number(localStorage.getItem("currentIndex"));
     setCurrentList(filteredList.slice(0, currentIndex));
   }, [filteredList]);
