@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import ProductList from "../components/ProductList";
 import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
+import FilterList from "../components/FilterList";
 
 const ProductPageWrapper = styled.div`
   width: 1080px;
@@ -22,6 +23,7 @@ function ProductPage() {
   let currentIndex = Number(localStorage.getItem("currentIndex"));
 
   const productList = useSelector((state) => state.productList);
+  const [filteredList, setFilteredList] = useState([]);
   const [currentList, setCurrentList] = useState([]);
   const [isEnd, setIsEnd] = useState(false);
 
@@ -37,7 +39,7 @@ function ProductPage() {
 
   const addNextData = () => {
     if (isEnd) {
-      setCurrentList([...currentList, ...productList.slice(currentIndex, currentIndex + ITEMS_PER_ROW * ROWS_PER_SCROLL)]);
+      setCurrentList([...currentList, ...filteredList.slice(currentIndex, currentIndex + ITEMS_PER_ROW * ROWS_PER_SCROLL)]);
       localStorage.setItem("currentIndex", currentIndex + ITEMS_PER_ROW * ROWS_PER_SCROLL);
       setIsEnd(false);
     }
@@ -53,15 +55,27 @@ function ProductPage() {
   }, []);
 
   useEffect(() => {
-    setCurrentList(productList.slice(0, currentIndex));
+    setFilteredList(productList);
   }, [productList]);
+
+  useEffect(() => {
+    localStorage.setItem("currentIndex", ITEMS_PER_ROW * ROWS_PER_SCROLL);
+    currentIndex = Number(localStorage.getItem("currentIndex"));
+    setCurrentList(filteredList.slice(0, currentIndex));
+  }, [filteredList]);
 
   useEffect(() => {
     addNextData();
   }, [isEnd]);
 
+  const handleFilterClick = (type) => {
+    if (type === "All") setFilteredList(productList);
+    else setFilteredList(productList.filter((product) => product.type === type));
+  };
+
   return (
     <ProductPageWrapper>
+      <FilterList handleFilterClick={handleFilterClick} />
       <ProductList products={currentList} />
     </ProductPageWrapper>
   );
