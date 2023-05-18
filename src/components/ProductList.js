@@ -4,7 +4,8 @@ import Product from "./Product";
 const ProductListWrapper = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(25%, 25%));
+  column-gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(20%, auto));
 `;
 
 function ProductList({ products }) {

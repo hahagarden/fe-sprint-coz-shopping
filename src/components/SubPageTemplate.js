@@ -4,7 +4,8 @@ import FilterList from "./FilterList";
 import ProductList from "./ProductList";
 
 const SubPageWrapper = styled.div`
-  width: 1080px;
+  width: 100vw;
+  padding: 0 100px;
   height: 100%;
   margin: 0 auto;
   margin-top: 4rem;

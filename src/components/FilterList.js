@@ -10,11 +10,13 @@ const filterOptions = {
 };
 
 const FilterListWrapper = styled.div`
-  width: 50%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: 30px 0;
+  & > div:not(:first-child) {
+    margin-left: 1.5rem;
+  }
 `;
 
 function FilterList({ handleFilterClick }) {
