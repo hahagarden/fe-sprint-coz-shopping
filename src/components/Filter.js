@@ -17,9 +17,10 @@ const FilterText = styled.div`
   margin-top: 8px;
 `;
 
-function Filter({ filterOption, handleFilterClick }) {
+function Filter({ filterOption, handleFilterClick, className }) {
   return (
     <FilterWrapper
+      className={className}
       onClick={() => {
         handleFilterClick(filterOption.type);
       }}

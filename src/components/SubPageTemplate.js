@@ -4,21 +4,22 @@ import FilterList from "./FilterList";
 import ProductList from "./ProductList";
 
 const SubPageWrapper = styled.div`
-  width: 1080px;
+  width: 100vw;
+  padding: 0 100px;
+  padding-bottom: 30px;
   height: 100%;
+  min-height: calc(100vh - 8rem);
   margin: 0 auto;
   margin-top: 4rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 `;
 
 function SubPageTemplate({ baseList }) {
-  const ITEMS_PER_ROW = 4;
-  const ROWS_PER_SCROLL = 3;
+  const DATA_PER_PAGE = 30;
 
-  if (!localStorage.getItem("currentIndex")) localStorage.setItem("currentIndex", ITEMS_PER_ROW * ROWS_PER_SCROLL);
+  if (!localStorage.getItem("currentIndex")) localStorage.setItem("currentIndex", DATA_PER_PAGE);
   let currentIndex = Number(localStorage.getItem("currentIndex"));
 
   const [filteredList, setFilteredList] = useState([]);
@@ -37,8 +38,8 @@ function SubPageTemplate({ baseList }) {
 
   const addNextData = () => {
     if (isEnd) {
-      setCurrentList([...currentList, ...filteredList.slice(currentIndex, currentIndex + ITEMS_PER_ROW * ROWS_PER_SCROLL)]);
-      localStorage.setItem("currentIndex", currentIndex + ITEMS_PER_ROW * ROWS_PER_SCROLL);
+      setCurrentList([...currentList, ...filteredList.slice(currentIndex, currentIndex + DATA_PER_PAGE)]);
+      localStorage.setItem("currentIndex", currentIndex + DATA_PER_PAGE);
       setIsEnd(false);
     }
   };
@@ -48,7 +49,7 @@ function SubPageTemplate({ baseList }) {
     if (!localStorage.getItem("filterOption")) localStorage.setItem("filterOption", "All");
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      localStorage.setItem("currentIndex", ITEMS_PER_ROW * ROWS_PER_SCROLL);
+      localStorage.setItem("currentIndex", DATA_PER_PAGE);
       localStorage.setItem("filterOption", "All");
     };
   }, []);
@@ -59,7 +60,7 @@ function SubPageTemplate({ baseList }) {
   }, [baseList]);
 
   useEffect(() => {
-    localStorage.setItem("currentIndex", ITEMS_PER_ROW * ROWS_PER_SCROLL);
+    localStorage.setItem("currentIndex", DATA_PER_PAGE);
     currentIndex = Number(localStorage.getItem("currentIndex"));
     setCurrentList(filteredList.slice(0, currentIndex));
   }, [filteredList]);

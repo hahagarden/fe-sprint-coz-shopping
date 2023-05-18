@@ -6,8 +6,8 @@ import { add } from "../redux/modalDataSlice";
 const ProductWrapper = styled.div``;
 
 const ProductContainer = styled.div`
-  width: 16rem;
-  height: 16rem;
+  width: 100%;
+  aspect-ratio: 4/3;
   flex: none;
   cursor: pointer;
 `;

@@ -3,13 +3,14 @@ import MainProductList from "../components/MainProductList";
 import styled from "@emotion/styled";
 
 const MainPageWrapper = styled.div`
-  width: 1080px;
+  width: 100vw;
+  padding: 0 100px;
   height: calc(100vh - 8rem);
   margin: 0 auto;
   margin-top: 4rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
 `;
 

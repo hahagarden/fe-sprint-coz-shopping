@@ -3,8 +3,6 @@ import Product from "./Product";
 
 const MainProductListWrapper = styled.div`
   width: 100%;
-  display: flex;
-  flex-direction: column;
 `;
 
 const Title = styled.h2`
@@ -12,12 +10,10 @@ const Title = styled.h2`
 `;
 
 const List = styled.div`
-  height: 16rem;
-  display: flex;
-
-  & > div:not(:first-of-type) {
-    margin-left: 1rem;
-  }
+  width: 100%;
+  display: grid;
+  column-gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(20%, auto));
 `;
 
 function MainProductList({ products, type }) {
