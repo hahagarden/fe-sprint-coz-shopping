@@ -1,10 +1,15 @@
-import { configureStore } from '@reduxjs/toolkit';
-import persistedReducer from './index';
-import persistStore from 'redux-persist/es/persistStore';
+import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers } from "@reduxjs/toolkit";
+import bookmarkListSlice from "./bookmarkListSlice";
+import productListSlice from "./productListSlice";
 
-const store = configureStore({
-  reducer: persistedReducer,
+export const rootReducer = combineReducers({
+  bookmarkList: bookmarkListSlice.reducer,
+  productList: productListSlice.reducer,
 });
 
-export const persistor = persistStore(store);
+const store = configureStore({
+  reducer: rootReducer,
+});
+
 export default store;

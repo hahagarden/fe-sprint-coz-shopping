@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 import { useDispatch } from "react-redux";
 import { set } from "./redux/productListSlice";
 import { useEffect } from "react";
+import { init } from "./redux/bookmarkListSlice";
 
 function App() {
   const dispatch = useDispatch();
@@ -18,6 +19,9 @@ function App() {
       .then((json) => {
         dispatch(set(json));
       });
+
+    if (!localStorage.getItem("bookmarks")) localStorage.setItem("bookmarks", JSON.stringify([]));
+    dispatch(init(JSON.parse(localStorage.getItem("bookmarks"))));
   }, []);
 
   return (
