@@ -1,8 +1,6 @@
 import styled from "@emotion/styled";
 
 const FooterWrapper = styled.footer`
-  position: absolute;
-  bottom: 0;
   z-index: 1;
   background-color: var(--white);
   display: flex;
