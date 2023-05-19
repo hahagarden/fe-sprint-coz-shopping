@@ -13,7 +13,6 @@ const BookmarkWrapper = styled.div`
 `;
 
 function Bookmark({ product, className }) {
-  // className for emotion
   const dispatch = useDispatch();
 
   const bookmarkList = useSelector((state) => state.bookmarkList);
@@ -23,16 +22,8 @@ function Bookmark({ product, className }) {
     event.stopPropagation();
     if (isBookmarked) {
       dispatch(remove(product.id));
-
-      const newBookmarkList = bookmarkList.slice();
-      newBookmarkList.splice(
-        newBookmarkList.findIndex((el) => el.id === product.id),
-        1
-      );
-      localStorage.setItem("bookmarks", JSON.stringify(newBookmarkList));
     } else {
       dispatch(add(product));
-      localStorage.setItem("bookmarks", JSON.stringify([...bookmarkList, product]));
     }
   };
 

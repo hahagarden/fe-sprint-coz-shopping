@@ -1,12 +1,14 @@
 import styled from "@emotion/styled";
 import Filter from "./Filter";
+import { Types, StorageKey } from "../utils/enum";
+import { getLocalStorage } from "../utils/func";
 
 const filterOptions = {
-  all: { type: "All", title: "전체", imgUrl: `${process.env.PUBLIC_URL}/public_assets/filter_all.png` },
-  product: { type: "Product", title: "상품", imgUrl: `${process.env.PUBLIC_URL}/public_assets/filter_product.png` },
-  category: { type: "Category", title: "카테고리", imgUrl: `${process.env.PUBLIC_URL}/public_assets/filter_category.png` },
-  exhibition: { type: "Exhibition", title: "기획전", imgUrl: `${process.env.PUBLIC_URL}/public_assets/filter_exhibition.png` },
-  brand: { type: "Brand", title: "브랜드", imgUrl: `${process.env.PUBLIC_URL}/public_assets/filter_brand.png` },
+  all: { type: Types.ALL, title: "전체", imgUrl: `${process.env.PUBLIC_URL}/public_assets/filter_all.png` },
+  product: { type: Types.PRODUCT, title: "상품", imgUrl: `${process.env.PUBLIC_URL}/public_assets/filter_product.png` },
+  category: { type: Types.CATEGORY, title: "카테고리", imgUrl: `${process.env.PUBLIC_URL}/public_assets/filter_category.png` },
+  exhibition: { type: Types.EXHIBITION, title: "기획전", imgUrl: `${process.env.PUBLIC_URL}/public_assets/filter_exhibition.png` },
+  brand: { type: Types.BRAND, title: "브랜드", imgUrl: `${process.env.PUBLIC_URL}/public_assets/filter_brand.png` },
 };
 
 const FilterListWrapper = styled.div`
@@ -27,7 +29,7 @@ const ClickedFilter = styled(Filter)`
 `;
 
 function FilterList({ handleFilterClick }) {
-  const currentFilter = localStorage.getItem("filterOption");
+  const currentFilter = getLocalStorage(StorageKey.FILTER_OPTION);
 
   return (
     <FilterListWrapper>
