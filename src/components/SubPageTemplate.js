@@ -22,7 +22,6 @@ function SubPageTemplate({ baseList }) {
 
   const [currentIndex, setCurrentIndex] = useState(DATA_PER_PAGE);
   const [currentFilter, setCurrentFilter] = useState(Types.ALL);
-  const [isEnd, setIsEnd] = useState(false);
 
   const getFilteredList = () => {
     if (currentFilter === Types.ALL) return baseList;
@@ -39,14 +38,7 @@ function SubPageTemplate({ baseList }) {
     const clientHeight = document.documentElement.clientHeight;
 
     if (scrollTop + clientHeight >= scrollHeight) {
-      setIsEnd(true);
-    }
-  };
-
-  const addNextData = () => {
-    if (isEnd) {
-      setCurrentIndex(currentIndex + DATA_PER_PAGE);
-      setIsEnd(false);
+      setCurrentIndex((prev) => prev + DATA_PER_PAGE);
     }
   };
 
@@ -57,10 +49,6 @@ function SubPageTemplate({ baseList }) {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
-  useEffect(() => {
-    addNextData();
-  }, [isEnd]);
 
   const handleFilterClick = (type) => {
     setCurrentFilter(type);
