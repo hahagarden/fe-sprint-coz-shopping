@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import MainProductList from "../components/MainProductList";
 import styled from "@emotion/styled";
+import { ListTypes } from "../utils/enum";
 
 const MainPageWrapper = styled.div`
   width: 100vw;
@@ -20,8 +21,8 @@ function MainPage() {
 
   return (
     <MainPageWrapper>
-      <MainProductList products={productList.slice(0, 4)} type={"Product"} />
-      <MainProductList products={bookmarkList.slice(0, 4)} type={"Bookmark"} />
+      <MainProductList products={productList.slice(0, 4)} type={ListTypes.PRODUCT} />
+      <MainProductList products={bookmarkList.slice(0, 4)} type={ListTypes.BOOKMARK} />
     </MainPageWrapper>
   );
 }

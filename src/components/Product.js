@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import Bookmark from "./Bookmark";
 import { useDispatch } from "react-redux";
 import { add } from "../redux/modalDataSlice";
+import { Types } from "../utils/enum";
 
 const ProductWrapper = styled.div``;
 
@@ -79,18 +80,18 @@ function Product({ product }) {
 
   const switchTextUI = (type) => {
     switch (type) {
-      case "Product":
+      case Types.PRODUCT:
         return (
           <>
             <Discount>{product.discountPercentage}%</Discount>
             <Price>{Number(product.price).toLocaleString()}원</Price>
           </>
         );
-      case "Category":
+      case Types.CATEGORY:
         return;
-      case "Exhibition":
+      case Types.EXHIBITION:
         return <ExhibitionDiscription>{product.sub_title}</ExhibitionDiscription>;
-      case "Brand":
+      case Types.BRAND:
         return (
           <>
             <FollowerText>관심고객수</FollowerText>
@@ -108,11 +109,11 @@ function Product({ product }) {
     <ProductWrapper>
       <ProductContainer onClick={() => handleProductClick(product)}>
         <Image>
-          <img src={product.type === "Brand" ? `${product.brand_image_url}` : `${product.image_url}`} />{" "}
+          <img src={product.type === Types.BRAND ? `${product.brand_image_url}` : `${product.image_url}`} />
           <ProductBookmark product={product} />
         </Image>
         <Text>
-          <Title>{product.type === "Brand" ? product.brand_name : product.title}</Title>
+          <Title>{product.type === Types.BRAND ? product.brand_name : product.title}</Title>
           {switchTextUI(product.type)}
         </Text>
       </ProductContainer>

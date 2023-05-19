@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import Bookmark from "./Bookmark";
 import { useDispatch } from "react-redux";
 import { remove } from "../redux/modalDataSlice";
+import { Types } from "../utils/enum";
 
 const ModalBackground = styled.div`
   position: fixed;
@@ -64,10 +65,10 @@ function ProductModal({ product }) {
     <ModalBackground onClick={handleModalClick}>
       <ModalBox
         onClick={(event) => event.stopPropagation()}
-        bgImage={product.type === "Brand" ? `${product.brand_image_url}` : `${product.image_url}`}
+        bgImage={product.type === Types.BRAND ? `${product.brand_image_url}` : `${product.image_url}`}
       >
         <ModalBookmark product={product} />
-        <Title>{product.type === "Brand" ? product.brand_name : product.title}</Title>
+        <Title>{product.type === Types.BRAND ? product.brand_name : product.title}</Title>
       </ModalBox>
     </ModalBackground>
   );
