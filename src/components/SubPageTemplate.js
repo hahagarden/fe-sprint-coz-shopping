@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import FilterList from "./FilterList";
 import ProductList from "./ProductList";
 import { StorageKey, Types } from "../utils/enum";
+import { getLocalStorage, setLocalStorage } from "../utils/func";
 
 const SubPageWrapper = styled.div`
   width: 100vw;
@@ -20,8 +21,8 @@ const SubPageWrapper = styled.div`
 function SubPageTemplate({ baseList }) {
   const DATA_PER_PAGE = 30;
 
-  if (!localStorage.getItem(StorageKey.CURRENT_INDEX)) localStorage.setItem(StorageKey.CURRENT_INDEX, DATA_PER_PAGE);
-  let currentIndex = Number(localStorage.getItem(StorageKey.CURRENT_INDEX));
+  if (!getLocalStorage(StorageKey.CURRENT_INDEX)) setLocalStorage(StorageKey.CURRENT_INDEX, DATA_PER_PAGE);
+  let currentIndex = Number(getLocalStorage(StorageKey.CURRENT_INDEX));
 
   const [filteredList, setFilteredList] = useState([]);
   const [currentList, setCurrentList] = useState([]);
@@ -40,29 +41,29 @@ function SubPageTemplate({ baseList }) {
   const addNextData = () => {
     if (isEnd) {
       setCurrentList([...currentList, ...filteredList.slice(currentIndex, currentIndex + DATA_PER_PAGE)]);
-      localStorage.setItem(StorageKey.CURRENT_INDEX, currentIndex + DATA_PER_PAGE);
+      setLocalStorage(StorageKey.CURRENT_INDEX, currentIndex + DATA_PER_PAGE);
       setIsEnd(false);
     }
   };
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
-    if (!localStorage.getItem(StorageKey.FILTER_OPTION)) localStorage.setItem(StorageKey.FILTER_OPTION, Types.ALL);
+    if (!getLocalStorage(StorageKey.FILTER_OPTION)) setLocalStorage(StorageKey.FILTER_OPTION, Types.ALL);
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      localStorage.setItem(StorageKey.CURRENT_INDEX, DATA_PER_PAGE);
-      localStorage.setItem(StorageKey.FILTER_OPTION, Types.ALL);
+      setLocalStorage(StorageKey.CURRENT_INDEX, DATA_PER_PAGE);
+      setLocalStorage(StorageKey.FILTER_OPTION, Types.ALL);
     };
   }, []);
 
   useEffect(() => {
-    if (localStorage.getItem(StorageKey.FILTER_OPTION) === Types.ALL) setFilteredList(baseList);
-    else setFilteredList(baseList.filter((product) => product.type === localStorage.getItem(StorageKey.FILTER_OPTION)));
+    if (getLocalStorage(StorageKey.FILTER_OPTION) === Types.ALL) setFilteredList(baseList);
+    else setFilteredList(baseList.filter((product) => product.type === getLocalStorage(StorageKey.FILTER_OPTION)));
   }, [baseList]);
 
   useEffect(() => {
-    localStorage.setItem(StorageKey.CURRENT_INDEX, DATA_PER_PAGE);
-    currentIndex = Number(localStorage.getItem(StorageKey.CURRENT_INDEX));
+    setLocalStorage(StorageKey.CURRENT_INDEX, DATA_PER_PAGE);
+    currentIndex = Number(getLocalStorage(StorageKey.CURRENT_INDEX));
     setCurrentList(filteredList.slice(0, currentIndex));
   }, [filteredList]);
 
@@ -73,7 +74,7 @@ function SubPageTemplate({ baseList }) {
   const handleFilterClick = (type) => {
     if (type === Types.ALL) setFilteredList(baseList);
     else setFilteredList(baseList.filter((product) => product.type === type));
-    localStorage.setItem(StorageKey.FILTER_OPTION, type);
+    setLocalStorage(StorageKey.FILTER_OPTION, type);
   };
 
   return (

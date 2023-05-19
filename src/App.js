@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import { init } from "./redux/bookmarkListSlice";
 import ProductModal from "./components/ProductModal";
 import { StorageKey } from "./utils/enum";
+import { getLocalStorage, setLocalStorage } from "./utils/func";
 
 function App() {
   const dispatch = useDispatch();
@@ -23,8 +24,8 @@ function App() {
         dispatch(set(json));
       });
 
-    if (!localStorage.getItem(StorageKey.BOOKMARKS)) localStorage.setItem(StorageKey.BOOKMARKS, JSON.stringify([]));
-    dispatch(init(JSON.parse(localStorage.getItem(StorageKey.BOOKMARKS))));
+    if (!getLocalStorage(StorageKey.BOOKMARKS)) setLocalStorage(StorageKey.BOOKMARKS, []);
+    dispatch(init(getLocalStorage(StorageKey.BOOKMARKS)));
   }, []);
 
   return (

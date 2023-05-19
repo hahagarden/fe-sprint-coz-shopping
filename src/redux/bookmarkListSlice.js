@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { StorageKey } from "../utils/enum";
+import { setLocalStorage } from "../utils/func";
 
 const bookmarkListSlice = createSlice({
   name: "bookmarkList",
@@ -7,14 +8,14 @@ const bookmarkListSlice = createSlice({
   reducers: {
     add: (state, action) => {
       state.push(action.payload);
-      localStorage.setItem(StorageKey.BOOKMARKS, JSON.stringify(state));
+      setLocalStorage(StorageKey.BOOKMARKS, state);
     },
     remove: (state, action) => {
       state.splice(
         state.findIndex((el) => el.id === action.payload),
         1
       );
-      localStorage.setItem(StorageKey.BOOKMARKS, JSON.stringify(state));
+      setLocalStorage(StorageKey.BOOKMARKS, state);
     },
     init: (state, action) => action.payload,
   },
