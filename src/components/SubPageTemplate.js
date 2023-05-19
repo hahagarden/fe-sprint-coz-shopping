@@ -1,9 +1,8 @@
 import styled from "@emotion/styled";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import FilterList from "./FilterList";
 import ProductList from "./ProductList";
-import { StorageKey, Types } from "../utils/enum";
-import { getLocalStorage, setLocalStorage } from "../utils/func";
+import { Types } from "../utils/enum";
 
 const SubPageWrapper = styled.div`
   width: 100vw;
@@ -21,12 +20,18 @@ const SubPageWrapper = styled.div`
 function SubPageTemplate({ baseList }) {
   const DATA_PER_PAGE = 30;
 
-  if (!getLocalStorage(StorageKey.CURRENT_INDEX)) setLocalStorage(StorageKey.CURRENT_INDEX, DATA_PER_PAGE);
-  let currentIndex = Number(getLocalStorage(StorageKey.CURRENT_INDEX));
-
-  const [filteredList, setFilteredList] = useState([]);
-  const [currentList, setCurrentList] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(DATA_PER_PAGE);
+  const [currentFilter, setCurrentFilter] = useState(Types.ALL);
   const [isEnd, setIsEnd] = useState(false);
+
+  const getFilteredList = () => {
+    if (currentFilter === Types.ALL) return baseList;
+    else return baseList.filter((product) => product.type === currentFilter);
+  };
+
+  const filteredList = useMemo(() => getFilteredList(), [baseList, currentFilter]); // 스크롤 시 memo 필요
+
+  let currentList = filteredList.slice(0, currentIndex); // 필터 또는 스크롤 시 항상 업데이트 되어 memo 불필요
 
   const handleScroll = () => {
     const scrollHeight = document.documentElement.scrollHeight;
@@ -40,41 +45,26 @@ function SubPageTemplate({ baseList }) {
 
   const addNextData = () => {
     if (isEnd) {
-      setCurrentList([...currentList, ...filteredList.slice(currentIndex, currentIndex + DATA_PER_PAGE)]);
-      setLocalStorage(StorageKey.CURRENT_INDEX, currentIndex + DATA_PER_PAGE);
+      setCurrentIndex(currentIndex + DATA_PER_PAGE);
       setIsEnd(false);
     }
   };
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
-    if (!getLocalStorage(StorageKey.FILTER_OPTION)) setLocalStorage(StorageKey.FILTER_OPTION, Types.ALL);
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      setLocalStorage(StorageKey.CURRENT_INDEX, DATA_PER_PAGE);
-      setLocalStorage(StorageKey.FILTER_OPTION, Types.ALL);
     };
   }, []);
-
-  useEffect(() => {
-    if (getLocalStorage(StorageKey.FILTER_OPTION) === Types.ALL) setFilteredList(baseList);
-    else setFilteredList(baseList.filter((product) => product.type === getLocalStorage(StorageKey.FILTER_OPTION)));
-  }, [baseList]);
-
-  useEffect(() => {
-    setLocalStorage(StorageKey.CURRENT_INDEX, DATA_PER_PAGE);
-    currentIndex = Number(getLocalStorage(StorageKey.CURRENT_INDEX));
-    setCurrentList(filteredList.slice(0, currentIndex));
-  }, [filteredList]);
 
   useEffect(() => {
     addNextData();
   }, [isEnd]);
 
   const handleFilterClick = (type) => {
-    if (type === Types.ALL) setFilteredList(baseList);
-    else setFilteredList(baseList.filter((product) => product.type === type));
-    setLocalStorage(StorageKey.FILTER_OPTION, type);
+    setCurrentFilter(type);
+    setCurrentIndex(DATA_PER_PAGE);
   };
 
   return (
