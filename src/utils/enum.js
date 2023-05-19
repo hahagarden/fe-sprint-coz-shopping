@@ -16,5 +16,6 @@ Object.freeze(ListTypes);
 export const StorageKey = {
   CURRENT_INDEX: "current_index",
   FILTER_OPTION: "filter_option",
+  BOOKMARKS: "bookmarks",
 };
 Object.freeze(StorageKey);
