@@ -2,16 +2,19 @@ import styled from "@emotion/styled";
 import Product from "./Product";
 
 const ProductListWrapper = styled.div`
-  width: 100%;
   display: grid;
   column-gap: 1rem;
-  grid-template-columns: repeat(auto-fill, minmax(20%, auto));
+  ${(props) => `
+  grid-template-columns: repeat(auto-fill, minmax(calc(${100 / props.dataPerRow}% - 1rem), auto));
+  `}
 `;
 
 function ProductList({ products }) {
+  const DATA_PER_ROW = 4;
+
   return (
     <>
-      <ProductListWrapper>
+      <ProductListWrapper dataPerRow={DATA_PER_ROW}>
         {products.map((product) => (
           <Product product={product} key={product.id} />
         ))}
