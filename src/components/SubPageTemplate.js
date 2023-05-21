@@ -57,7 +57,7 @@ function SubPageTemplate({ baseList }) {
 
   return (
     <SubPageWrapper>
-      <FilterList handleFilterClick={handleFilterClick} />
+      <FilterList currentFilter={currentFilter} handleFilterClick={handleFilterClick} />
       <ProductList products={currentList} />
     </SubPageWrapper>
   );
