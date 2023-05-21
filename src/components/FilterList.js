@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import Filter from "./Filter";
-import { Types, StorageKey } from "../utils/enum";
-import { getLocalStorage } from "../utils/func";
+import { Types } from "../utils/enum";
 
 const filterOptions = {
   all: { type: Types.ALL, title: "전체", imgUrl: `${process.env.PUBLIC_URL}/public_assets/filter_all.png` },
@@ -28,9 +27,7 @@ const ClickedFilter = styled(Filter)`
   }
 `;
 
-function FilterList({ handleFilterClick }) {
-  const currentFilter = getLocalStorage(StorageKey.FILTER_OPTION);
-
+function FilterList({ currentFilter, handleFilterClick }) {
   return (
     <FilterListWrapper>
       {Object.values(filterOptions).map((option) => {
