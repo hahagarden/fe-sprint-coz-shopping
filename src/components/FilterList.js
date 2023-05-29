@@ -1,11 +1,11 @@
 import styled from "@emotion/styled";
 import Filter from "./Filter";
 import { Types } from "../utils/enum";
-import filter_all from "./assets/filter_all.png";
-import filter_product from "./assets/filter_product.png";
-import filter_category from "./assets/filter_category.png";
-import filter_exhibition from "./assets/filter_exhibition.png";
-import filter_brand from "./assets/filter_brand.png";
+import filter_all from "../assets/filter_all.png";
+import filter_product from "../assets/filter_product.png";
+import filter_category from "../assets/filter_category.png";
+import filter_exhibition from "../assets/filter_exhibition.png";
+import filter_brand from "../assets/filter_brand.png";
 
 const filterOptions = {
   all: { type: Types.ALL, title: "전체", imgUrl: filter_all },

@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import Menu from "./Menu";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import logo from "./assets/coz_logo.png";
+import logo from "../assets/coz_logo.png";
 
 const HeaderWrapper = styled.header`
   position: fixed;
