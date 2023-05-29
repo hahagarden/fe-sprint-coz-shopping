@@ -4,8 +4,8 @@ const modalDataSlice = createSlice({
   name: "modalData",
   initialState: null,
   reducers: {
-    add: (state, action) => action.payload,
-    remove: (state, action) => null,
+    add: (_, action) => action.payload,
+    remove: () => null,
   },
 });
 

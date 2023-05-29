@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 import { useEffect, useMemo, useState } from "react";
-import FilterList from "./FilterList";
-import ProductList from "./ProductList";
-import { Types } from "../utils/enum";
+import FilterList from "../../components/FilterList";
+import ProductList from "../../components/ProductList";
+import { Types } from "../../utils/enum";
 
 const SubPageWrapper = styled.div`
   width: 100vw;
