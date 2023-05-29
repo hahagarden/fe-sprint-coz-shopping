@@ -23,7 +23,14 @@
 
 ```
 src
- ┣ components
+ ┣ assets # 이미지 파일 폴더
+ ┃ ┣ coz_logo.png
+ ┃ ┣ filter_all.png
+ ┃ ┣ filter_brand.png
+ ┃ ┣ filter_category.png
+ ┃ ┣ filter_exhibition.png
+ ┃ ┗ filter_product.png
+ ┣ components # 컴포넌트 폴더
  ┃ ┣ Bookmark.js
  ┃ ┣ Filter.js
  ┃ ┣ FilterList.js
@@ -33,18 +40,19 @@ src
  ┃ ┣ Menu.js
  ┃ ┣ Product.js
  ┃ ┣ ProductList.js
- ┃ ┣ ProductModal.js
- ┃ ┗ SubPageTemplate.js
- ┣ pages
+ ┃ ┗ ProductModal.js
+ ┣ pages # 라우팅 페이지 폴더
+ ┃ ┣ template # 페이지에 공통으로 사용되는 템플릿 폴더
+ ┃ ┃ ┗ SubPageTemplate.js
  ┃ ┣ BookmarkPage.js
  ┃ ┣ MainPage.js
  ┃ ┗ ProductPage.js
- ┣ redux
+ ┣ redux # 리덕스 상태 관련 폴더
  ┃ ┣ bookmarkListSlice.js
  ┃ ┣ modalDataSlice.js
  ┃ ┣ productListSlice.js
  ┃ ┗ store.js
- ┣ utils
+ ┣ utils # 유틸리티 관련 폴더
  ┃ ┣ enum.js
  ┃ ┗ func.js
  ┣ App.css
