@@ -4,7 +4,7 @@ const productListSlice = createSlice({
   name: "productList",
   initialState: [],
   reducers: {
-    set: (state, action) => action.payload,
+    set: (_, action) => action.payload,
   },
 });
 

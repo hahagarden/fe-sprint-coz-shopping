@@ -12,12 +12,12 @@ const bookmarkListSlice = createSlice({
     },
     remove: (state, action) => {
       state.splice(
-        state.findIndex((el) => el.id === action.payload),
+        state.findIndex((bookmarkedProduct) => bookmarkedProduct.id === action.payload),
         1
       );
       setLocalStorage(StorageKey.BOOKMARKS, state);
     },
-    init: (state, action) => action.payload,
+    init: (_, action) => action.payload,
   },
 });
 
