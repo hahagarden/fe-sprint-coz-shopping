@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import Menu from "./Menu";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import logo from "./assets/coz_logo.png";
 
 const HeaderWrapper = styled.header`
   position: fixed;
@@ -54,7 +55,7 @@ function Header() {
     <HeaderWrapper>
       <Title>
         <Logo to="/">
-          <img src={`${process.env.PUBLIC_URL}/public_assets/coz_logo.png`} />
+          <img src={logo} />
         </Logo>
         <h1>COZ Shopping</h1>
       </Title>
